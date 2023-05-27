@@ -122,7 +122,11 @@ private extension Item {
             .foregroundColor(Color.onBackgroundSecondary)
     }
 }
-
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView().implementPopupView()
+    }
+}
 private extension Item {
     func createTitleText() -> some View {
         Text(data.title)

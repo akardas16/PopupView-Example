@@ -19,8 +19,18 @@ struct TopPopup_Notification: TopPopup {
     }
     func createContent() -> some View {
         VStack(alignment: .customAlignment, spacing: 12) {
-            createTopView()
-            createDismissButton()
+            HStack(spacing: 0) {
+                createIcon()
+                Spacer.width(12)
+                createText()
+                Spacer()
+            }
+            Button(action: dismiss) {
+                Text("Dismiss".uppercased())
+                    .font(.openSansBold(13))
+                    .foregroundColor(.primary)
+            }
+            .alignmentGuide(.customAlignment, computeValue: { $0[.leading] })
         }
         .padding(.top, 20)
         .padding(.bottom, 16)
@@ -29,24 +39,6 @@ struct TopPopup_Notification: TopPopup {
     }
 }
 
-private extension TopPopup_Notification {
-    func createTopView() -> some View {
-        HStack(spacing: 0) {
-            createIcon()
-            Spacer.width(12)
-            createText()
-            Spacer()
-        }
-    }
-    func createDismissButton() -> some View {
-        Button(action: dismiss) {
-            Text("Dismiss".uppercased())
-                .font(.openSansBold(13))
-                .foregroundColor(.primary)
-        }
-        .alignmentGuide(.customAlignment, computeValue: { $0[.leading] })
-    }
-}
 
 private extension TopPopup_Notification {
     func createIcon() -> some View {
